@@ -543,7 +543,8 @@ function renderAll() { renderWorkers(); renderSites(); updateStats(); }
 function renderWorkers() {
   const list = document.getElementById('workers-list');
   const term = searchTerm.toLowerCase();
-  const visible = state.workers.filter(w => w.name.toLowerCase().includes(term));
+  const visible = state.workers.filter(w => w.name.toLowerCase().includes(term))
+    .sort((a, b) => a.name.localeCompare(b.name, 'tr'));
 
   list.innerHTML = '';
   visible.forEach(w => {
