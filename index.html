@@ -26,67 +26,59 @@
     color: var(--text);
     font-family: 'IBM Plex Sans', sans-serif;
     min-height: 100vh;
-    overflow-x: hidden;
   }
 
-  /* Header */
   header {
     background: var(--surface);
     border-bottom: 2px solid var(--accent);
-    padding: 18px 32px;
+    padding: 16px 28px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     position: sticky;
     top: 0;
     z-index: 100;
   }
 
-  header svg { flex-shrink: 0; }
-
   header h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
+    font-size: 1.9rem;
     letter-spacing: 3px;
     color: var(--accent);
     line-height: 1;
   }
 
-  header span {
-    font-size: 0.75rem;
+  header p {
+    font-size: 0.7rem;
     color: var(--text2);
     text-transform: uppercase;
     letter-spacing: 2px;
   }
 
-  /* Stats bar */
   .stats {
     display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
     background: var(--surface2);
+    border-bottom: 1px solid var(--border);
   }
 
   .stat {
     flex: 1;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-right: 1px solid var(--border);
     text-align: center;
   }
-
   .stat:last-child { border-right: none; }
-  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--accent); }
-  .stat-lbl { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--accent); }
+  .stat-lbl { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); }
 
-  /* Layout */
   .app {
     display: grid;
-    grid-template-columns: 320px 1fr;
-    height: calc(100vh - 110px);
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 108px);
   }
 
-  /* Left Panel */
-  .panel {
+  /* LEFT: Workers */
+  .workers-panel {
     background: var(--surface);
     border-right: 1px solid var(--border);
     display: flex;
@@ -94,19 +86,18 @@
     overflow: hidden;
   }
 
-  .panel-header {
-    padding: 16px 20px 12px;
+  .panel-head {
+    padding: 14px 16px 10px;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
     flex-shrink: 0;
   }
 
   .panel-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 2px;
     color: var(--text2);
   }
@@ -114,23 +105,21 @@
   .badge {
     background: var(--accent);
     color: #000;
-    font-size: 0.7rem;
-    font-weight: 600;
+    font-size: 0.65rem;
+    font-weight: 700;
     padding: 2px 8px;
     border-radius: 20px;
   }
 
-  /* Add input row */
   .add-row {
     display: flex;
     gap: 6px;
-    padding: 10px 12px;
+    padding: 8px 10px;
     border-bottom: 1px solid var(--border);
     flex-shrink: 0;
   }
 
-  .add-row input {
-    flex: 1;
+  .add-row input, .search-inp {
     background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--text);
@@ -142,147 +131,125 @@
     transition: border-color 0.2s;
   }
 
-  .add-row input:focus { border-color: var(--accent); }
-  .add-row input::placeholder { color: var(--text2); }
+  .add-row input { flex: 1; }
+  .add-row input:focus, .search-inp:focus { border-color: var(--accent); }
+  .add-row input::placeholder, .search-inp::placeholder { color: var(--text2); }
 
-  .btn-add {
+  .btn {
     background: var(--accent);
     color: #000;
     border: none;
     border-radius: 4px;
     padding: 7px 14px;
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 700;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s;
     flex-shrink: 0;
+    transition: opacity 0.15s;
   }
+  .btn:hover { opacity: 0.85; }
 
-  .btn-add:hover { opacity: 0.85; }
-  .btn-add:active { transform: scale(0.96); }
-
-  /* Search */
   .search-row {
-    padding: 8px 12px;
+    padding: 7px 10px;
     border-bottom: 1px solid var(--border);
     flex-shrink: 0;
   }
+  .search-inp { width: 100%; }
 
-  .search-row input {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 6px 12px 6px 32px;
-    border-radius: 4px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.8rem;
-    outline: none;
-    position: relative;
-  }
-
-  .search-wrap { position: relative; }
-  .search-wrap svg { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); opacity: 0.4; pointer-events: none; }
-
-  /* Workers list */
   .workers-list {
     overflow-y: auto;
     flex: 1;
-    padding: 8px 0;
   }
+  .workers-list::-webkit-scrollbar { width: 3px; }
+  .workers-list::-webkit-scrollbar-thumb { background: var(--border); }
 
-  .workers-list::-webkit-scrollbar { width: 4px; }
-  .workers-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-  .worker-item {
+  .worker-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 9px 14px;
-    cursor: grab;
-    transition: background 0.15s;
-    border-bottom: 1px solid transparent;
-    user-select: none;
-    position: relative;
+    gap: 9px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #1f1f1f;
+    transition: background 0.12s;
   }
+  .worker-row:hover { background: var(--surface2); }
 
-  .worker-item:hover { background: var(--surface2); }
-
-  .worker-item.dragging {
-    opacity: 0.4;
-    background: var(--surface2);
-  }
-
-  .worker-avatar {
-    width: 30px;
-    height: 30px;
+  .w-avatar {
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent2), var(--accent));
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: #000;
     flex-shrink: 0;
   }
 
-  .worker-name { font-size: 0.85rem; font-weight: 400; flex: 1; }
-
-  .worker-assigned {
-    font-size: 0.65rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    max-width: 80px;
+  .w-name {
+    font-size: 0.82rem;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
-  .worker-del {
+  .w-select {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.73rem;
+    padding: 4px 6px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    max-width: 115px;
+    transition: border-color 0.2s;
+  }
+  .w-select:focus { border-color: var(--accent); }
+  .w-select.assigned { color: var(--accent); border-color: var(--accent); }
+
+  .w-del {
     background: none;
     border: none;
     color: var(--text2);
     cursor: pointer;
-    padding: 2px;
+    font-size: 0.85rem;
+    padding: 2px 4px;
     border-radius: 3px;
-    display: none;
-    transition: color 0.15s;
     flex-shrink: 0;
+    transition: color 0.15s;
+    display: none;
   }
+  .worker-row:hover .w-del { display: block; }
+  .w-del:hover { color: var(--red); }
 
-  .worker-item:hover .worker-del { display: block; }
-  .worker-del:hover { color: var(--red); }
-
-  /* Drag handle icon */
-  .drag-icon { color: var(--text2); flex-shrink: 0; opacity: 0.5; }
-
-  /* Right Panel - Sites */
+  /* RIGHT: Sites */
   .sites-panel {
     overflow-y: auto;
-    padding: 20px;
+    padding: 16px;
     background: var(--bg);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
+  .sites-panel::-webkit-scrollbar { width: 3px; }
+  .sites-panel::-webkit-scrollbar-thumb { background: var(--border); }
 
-  .sites-panel::-webkit-scrollbar { width: 4px; }
-  .sites-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-  /* Sites top bar */
   .sites-topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
     flex-shrink: 0;
   }
 
   .sites-topbar-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     letter-spacing: 3px;
     color: var(--text2);
   }
@@ -296,23 +263,21 @@
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 7px 14px;
+    padding: 7px 12px;
     border-radius: 4px;
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.82rem;
     outline: none;
-    width: 200px;
+    width: 160px;
     transition: border-color 0.2s;
   }
-
   .add-site-row input:focus { border-color: var(--accent); }
   .add-site-row input::placeholder { color: var(--text2); }
 
-  /* Site card */
   .sites-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    gap: 14px;
   }
 
   .site-card {
@@ -320,166 +285,149 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .site-card.drag-over {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px var(--accent), 0 4px 24px rgba(245,166,35,0.15);
   }
 
   .site-card-header {
-    background: linear-gradient(135deg, var(--surface2), var(--surface));
-    padding: 14px 16px 12px;
+    background: var(--surface2);
+    padding: 12px 14px 10px;
     border-bottom: 2px solid var(--accent2);
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  .site-name {
+  .site-name-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 2px;
     color: var(--accent);
   }
 
+  .site-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
   .site-count {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--text2);
     background: var(--bg);
     padding: 2px 8px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
+    border-radius: 10px;
   }
 
-  .site-del {
+  .site-del-btn {
     background: none;
     border: none;
     color: var(--text2);
     cursor: pointer;
-    padding: 2px;
+    font-size: 0.8rem;
+    padding: 1px 4px;
     border-radius: 3px;
     transition: color 0.15s;
-    margin-left: 6px;
   }
+  .site-del-btn:hover { color: var(--red); }
 
-  .site-del:hover { color: var(--red); }
-
-  .site-drop-zone {
-    min-height: 60px;
-    padding: 10px;
-    flex: 1;
+  .site-workers {
+    padding: 10px 12px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
+    min-height: 50px;
   }
 
-  .site-drop-hint {
-    text-align: center;
-    color: var(--text2);
-    font-size: 0.73rem;
-    padding: 14px 8px;
-    border: 1px dashed var(--border);
-    border-radius: 4px;
-    letter-spacing: 0.5px;
-  }
-
-  .assigned-worker {
+  .sw-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     background: var(--surface2);
     border-radius: 4px;
-    padding: 6px 10px;
-    transition: background 0.15s;
+    padding: 5px 9px;
   }
 
-  .assigned-worker:hover { background: #2e2e2e; }
-
-  .aw-avatar {
-    width: 22px;
-    height: 22px;
+  .sw-avatar {
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent2), var(--accent));
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     color: #000;
     flex-shrink: 0;
   }
 
-  .aw-name { font-size: 0.8rem; flex: 1; }
+  .sw-name { font-size: 0.78rem; flex: 1; }
 
-  .aw-remove {
+  .sw-remove {
     background: none;
     border: none;
     color: var(--text2);
     cursor: pointer;
-    padding: 0 2px;
-    border-radius: 2px;
     font-size: 1rem;
     line-height: 1;
+    padding: 0 2px;
     transition: color 0.15s;
   }
+  .sw-remove:hover { color: var(--red); }
 
-  .aw-remove:hover { color: var(--red); }
-
-  /* Empty state */
-  .empty-sites {
-    text-align: center;
-    padding: 60px 20px;
+  .site-empty {
+    font-size: 0.72rem;
     color: var(--text2);
+    text-align: center;
+    padding: 12px 0;
+    font-style: italic;
   }
 
-  .empty-sites svg { opacity: 0.2; margin-bottom: 12px; }
-  .empty-sites p { font-size: 0.85rem; }
+  .empty-sites {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--text2);
+    font-size: 0.82rem;
+  }
 
-  /* Notification */
   .notif {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    bottom: 20px;
+    right: 20px;
     background: var(--green);
     color: #000;
     font-weight: 600;
-    font-size: 0.82rem;
-    padding: 10px 20px;
+    font-size: 0.8rem;
+    padding: 9px 18px;
     border-radius: 6px;
     opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.25s;
+    transform: translateY(8px);
+    transition: all 0.22s;
     pointer-events: none;
     z-index: 999;
   }
-
   .notif.show { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 700px) {
-    .app { grid-template-columns: 1fr; grid-template-rows: auto 1fr; height: auto; }
-    .panel { max-height: 50vh; }
+    .app { grid-template-columns: 1fr; height: auto; }
+    .workers-panel { max-height: 55vh; }
     .stats { flex-wrap: wrap; }
     .stat { min-width: 50%; }
+    .sites-topbar { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <rect width="36" height="36" rx="6" fill="#f5a623" opacity="0.15"/>
-    <path d="M6 28h24M10 28V16l8-8 8 8v12" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="14" y="20" width="8" height="8" rx="1" stroke="#f5a623" stroke-width="1.5"/>
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+    <rect width="32" height="32" rx="5" fill="#f5a623" opacity="0.15"/>
+    <path d="M5 26h22M9 26V14l7-7 7 7v12" stroke="#f5a623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="12" y="18" width="8" height="8" rx="1" stroke="#f5a623" stroke-width="1.4"/>
   </svg>
   <div>
     <h1>ŞANTİYE ATAMA</h1>
-    <span>Personel Yönetim Sistemi</span>
+    <p>Personel Yönetim Sistemi</p>
   </div>
 </header>
 
@@ -503,43 +451,39 @@
 </div>
 
 <div class="app">
-  <!-- Left: Workers -->
-  <div class="panel">
-    <div class="panel-header">
+
+  <div class="workers-panel">
+    <div class="panel-head">
       <span class="panel-title">👷 ÇALIŞANLAR</span>
       <span class="badge" id="worker-count">0</span>
     </div>
     <div class="add-row">
       <input type="text" id="new-worker-input" placeholder="Çalışan adı ekle..." maxlength="50">
-      <button class="btn-add" onclick="addWorker()">+</button>
+      <button class="btn" onclick="addWorker()">+ Ekle</button>
     </div>
     <div class="search-row">
-      <div class="search-wrap">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="#8a8680" stroke-width="1.5"/><path d="M9 9l3 3" stroke="#8a8680" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <input type="text" id="search-input" placeholder="Ara..." oninput="filterWorkers()">
-      </div>
+      <input class="search-inp" type="text" id="search-input" placeholder="Çalışan ara..." oninput="filterWorkers()">
     </div>
     <div class="workers-list" id="workers-list"></div>
   </div>
 
-  <!-- Right: Sites -->
-  <div class="sites-panel" id="sites-panel">
+  <div class="sites-panel">
     <div class="sites-topbar">
       <span class="sites-topbar-title">🏗 ŞANTİYELER</span>
       <div class="add-site-row">
         <input type="text" id="new-site-input" placeholder="Şantiye adı..." maxlength="40">
-        <button class="btn-add" onclick="addSite()">+ Şantiye</button>
+        <button class="btn" onclick="addSite()">+ Şantiye</button>
       </div>
     </div>
     <div class="sites-grid" id="sites-grid"></div>
   </div>
+
 </div>
 
 <div class="notif" id="notif"></div>
 
 <script>
-// ─── Data ────────────────────────────────────────────────────────────────────
-const STORAGE_KEY = 'santiye_v2';
+const STORAGE_KEY = 'santiye_v3';
 
 const defaultWorkers = [
   "Harun Tülek","Murat Kaya","Erhan Gümüşel","Abdullah Kozan","Abdullah Şeyhanlıgil",
@@ -555,67 +499,46 @@ const defaultWorkers = [
 const defaultSites = ["Petka","Aspet","Anadolu Cam","Çimento","MKK","Hava Alanı","Yonca"];
 
 let state = { workers: [], sites: [], assignments: {} };
+let searchTerm = '';
 
 function load() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) { state = JSON.parse(saved); return; }
   } catch(e) {}
-  // default
-  state.workers = defaultWorkers.map((n,i) => ({ id: 'w'+i, name: n }));
-  state.sites = defaultSites.map((n,i) => ({ id: 's'+i, name: n }));
+  state.workers = defaultWorkers.map((n,i) => ({ id:'w'+i, name:n }));
+  state.sites   = defaultSites.map((n,i)   => ({ id:'s'+i, name:n }));
   state.assignments = {};
 }
 
-function save() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
+function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function uid(p) { return p + Date.now() + Math.random().toString(36).slice(2,5); }
 
-// ─── IDs ─────────────────────────────────────────────────────────────────────
-function uid(prefix) { return prefix + Date.now() + Math.random().toString(36).slice(2,5); }
-
-// ─── Helpers ─────────────────────────────────────────────────────────────────
 function initials(name) {
-  return name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  return name.trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 }
 
-function getWorkerSite(wid) {
-  for (const [sid, wids] of Object.entries(state.assignments)) {
+function getWorkerSiteId(wid) {
+  for (const [sid, wids] of Object.entries(state.assignments))
     if (wids.includes(wid)) return sid;
-  }
-  return null;
+  return '';
 }
 
 function getSiteWorkers(sid) {
-  return state.assignments[sid] || [];
+  return (state.assignments[sid] || []).map(id => state.workers.find(w=>w.id===id)).filter(Boolean);
 }
 
 function assign(wid, sid) {
-  // remove from current
-  for (const s in state.assignments) {
-    state.assignments[s] = state.assignments[s].filter(x => x !== wid);
-  }
-  if (!state.assignments[sid]) state.assignments[sid] = [];
-  state.assignments[sid].push(wid);
-  save();
-}
-
-function unassign(wid) {
-  for (const s in state.assignments) {
-    state.assignments[s] = state.assignments[s].filter(x => x !== wid);
+  for (const s in state.assignments)
+    state.assignments[s] = state.assignments[s].filter(x=>x!==wid);
+  if (sid) {
+    if (!state.assignments[sid]) state.assignments[sid] = [];
+    state.assignments[sid].push(wid);
   }
   save();
 }
 
-// ─── Render ──────────────────────────────────────────────────────────────────
-let dragWorker = null;
-let searchTerm = '';
-
-function renderAll() {
-  renderWorkers();
-  renderSites();
-  updateStats();
-}
+function renderAll() { renderWorkers(); renderSites(); updateStats(); }
 
 function renderWorkers() {
   const list = document.getElementById('workers-list');
@@ -624,39 +547,38 @@ function renderWorkers() {
 
   list.innerHTML = '';
   visible.forEach(w => {
-    const sid = getWorkerSite(w.id);
-    const site = sid ? state.sites.find(s => s.id === sid) : null;
+    const currentSid = getWorkerSiteId(w.id);
+    const opts = state.sites.map(s =>
+      `<option value="${s.id}" ${s.id === currentSid ? 'selected' : ''}>${s.name}</option>`
+    ).join('');
 
-    const div = document.createElement('div');
-    div.className = 'worker-item';
-    div.draggable = true;
-    div.dataset.wid = w.id;
-    div.innerHTML = `
-      <svg class="drag-icon" width="10" height="16" viewBox="0 0 10 16" fill="none">
-        <circle cx="3" cy="3" r="1.5" fill="currentColor"/><circle cx="7" cy="3" r="1.5" fill="currentColor"/>
-        <circle cx="3" cy="8" r="1.5" fill="currentColor"/><circle cx="7" cy="8" r="1.5" fill="currentColor"/>
-        <circle cx="3" cy="13" r="1.5" fill="currentColor"/><circle cx="7" cy="13" r="1.5" fill="currentColor"/>
-      </svg>
-      <div class="worker-avatar">${initials(w.name)}</div>
-      <span class="worker-name">${w.name}</span>
-      ${site ? `<span class="worker-assigned">${site.name}</span>` : ''}
-      <button class="worker-del" onclick="deleteWorker('${w.id}',event)" title="Sil">✕</button>
+    const row = document.createElement('div');
+    row.className = 'worker-row';
+    row.innerHTML = `
+      <div class="w-avatar">${initials(w.name)}</div>
+      <span class="w-name" title="${w.name}">${w.name}</span>
+      <select class="w-select ${currentSid ? 'assigned' : ''}" data-wid="${w.id}" onchange="onSelectChange(this)">
+        <option value="">— Seç —</option>
+        ${opts}
+      </select>
+      <button class="w-del" onclick="deleteWorker('${w.id}')" title="Sil">✕</button>
     `;
-
-    div.addEventListener('dragstart', e => {
-      dragWorker = w.id;
-      div.classList.add('dragging');
-      e.dataTransfer.setData('text/plain', w.id);
-    });
-    div.addEventListener('dragend', () => {
-      dragWorker = null;
-      div.classList.remove('dragging');
-    });
-
-    list.appendChild(div);
+    list.appendChild(row);
   });
 
   document.getElementById('worker-count').textContent = state.workers.length;
+}
+
+function onSelectChange(sel) {
+  const wid = sel.dataset.wid;
+  const sid = sel.value;
+  const w = state.workers.find(x=>x.id===wid);
+  const s = state.sites.find(x=>x.id===sid);
+  assign(wid, sid);
+  sel.className = 'w-select' + (sid ? ' assigned' : '');
+  if (sid && s) notify(`${w.name} → ${s.name}`);
+  renderSites();
+  updateStats();
 }
 
 function renderSites() {
@@ -664,65 +586,34 @@ function renderSites() {
   grid.innerHTML = '';
 
   if (!state.sites.length) {
-    grid.innerHTML = `<div class="empty-sites" style="grid-column:1/-1">
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 40h32M12 40V22l12-12 12 12v18" stroke="#8a8680" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="28" width="12" height="12" rx="1" stroke="#8a8680" stroke-width="1.5"/></svg>
-      <p>Henüz şantiye eklenmedi.<br>Sağ üstten şantiye ekleyebilirsiniz.</p>
-    </div>`;
+    grid.innerHTML = `<div class="empty-sites">Henüz şantiye eklenmedi.<br>Sağ üstten şantiye ekleyebilirsiniz.</div>`;
     return;
   }
 
   state.sites.forEach(site => {
-    const wids = getSiteWorkers(site.id);
-    const workers = wids.map(id => state.workers.find(w => w.id === id)).filter(Boolean);
-
+    const workers = getSiteWorkers(site.id);
     const card = document.createElement('div');
     card.className = 'site-card';
-    card.dataset.sid = site.id;
 
-    let workerRows = workers.map(w => `
-      <div class="assigned-worker">
-        <div class="aw-avatar">${initials(w.name)}</div>
-        <span class="aw-name">${w.name}</span>
-        <button class="aw-remove" onclick="removeFromSite('${w.id}','${site.id}')" title="Çıkar">×</button>
-      </div>
-    `).join('');
+    const workerRows = workers.length
+      ? workers.map(w => `
+          <div class="sw-item">
+            <div class="sw-avatar">${initials(w.name)}</div>
+            <span class="sw-name">${w.name}</span>
+            <button class="sw-remove" onclick="removeWorker('${w.id}')" title="Çıkar">×</button>
+          </div>`).join('')
+      : `<div class="site-empty">Henüz çalışan atanmadı</div>`;
 
     card.innerHTML = `
       <div class="site-card-header">
-        <span class="site-name">${site.name}</span>
-        <div style="display:flex;align-items:center;gap:4px">
+        <span class="site-name-label">${site.name}</span>
+        <div class="site-meta">
           <span class="site-count">👷 ${workers.length}</span>
-          <button class="site-del" onclick="deleteSite('${site.id}')" title="Şantiyeyi sil">✕</button>
+          <button class="site-del-btn" onclick="deleteSite('${site.id}')" title="Şantiyeyi sil">✕</button>
         </div>
       </div>
-      <div class="site-drop-zone" id="zone-${site.id}">
-        ${workerRows || '<div class="site-drop-hint">Çalışanı sürükleyip bırakın</div>'}
-      </div>
+      <div class="site-workers">${workerRows}</div>
     `;
-
-    const zone = card.querySelector(`#zone-${site.id}`);
-
-    zone.addEventListener('dragover', e => {
-      e.preventDefault();
-      card.classList.add('drag-over');
-    });
-
-    zone.addEventListener('dragleave', e => {
-      if (!card.contains(e.relatedTarget)) card.classList.remove('drag-over');
-    });
-
-    zone.addEventListener('drop', e => {
-      e.preventDefault();
-      card.classList.remove('drag-over');
-      const wid = e.dataTransfer.getData('text/plain') || dragWorker;
-      if (!wid) return;
-      const w = state.workers.find(x => x.id === wid);
-      if (!w) return;
-      assign(wid, site.id);
-      notify(`${w.name} → ${site.name}`);
-      renderAll();
-    });
-
     grid.appendChild(card);
   });
 }
@@ -730,34 +621,34 @@ function renderSites() {
 function updateStats() {
   const total = state.workers.length;
   let assigned = new Set();
-  for (const wids of Object.values(state.assignments)) wids.forEach(id => assigned.add(id));
-  // filter only existing workers
-  assigned = new Set([...assigned].filter(id => state.workers.find(w => w.id === id)));
+  for (const wids of Object.values(state.assignments))
+    wids.forEach(id => { if (state.workers.find(w=>w.id===id)) assigned.add(id); });
   document.getElementById('stat-total').textContent = total;
   document.getElementById('stat-assigned').textContent = assigned.size;
   document.getElementById('stat-free').textContent = total - assigned.size;
   document.getElementById('stat-sites').textContent = state.sites.length;
 }
 
-// ─── Actions ─────────────────────────────────────────────────────────────────
 function addWorker() {
   const inp = document.getElementById('new-worker-input');
   const name = inp.value.trim();
   if (!name) return;
   state.workers.push({ id: uid('w'), name });
-  save();
-  inp.value = '';
+  save(); inp.value = '';
   renderAll();
   notify(`${name} eklendi`);
 }
 
-function deleteWorker(wid, e) {
-  e.stopPropagation();
-  const w = state.workers.find(x => x.id === wid);
+function deleteWorker(wid) {
+  const w = state.workers.find(x=>x.id===wid);
   if (!confirm(`"${w?.name}" silinsin mi?`)) return;
-  unassign(wid);
-  state.workers = state.workers.filter(x => x.id !== wid);
-  save();
+  assign(wid, '');
+  state.workers = state.workers.filter(x=>x.id!==wid);
+  save(); renderAll();
+}
+
+function removeWorker(wid) {
+  assign(wid, '');
   renderAll();
 }
 
@@ -766,24 +657,17 @@ function addSite() {
   const name = inp.value.trim();
   if (!name) return;
   state.sites.push({ id: uid('s'), name });
-  save();
-  inp.value = '';
+  save(); inp.value = '';
   renderAll();
-  notify(`Şantiye "${name}" eklendi`);
+  notify(`"${name}" şantiyesi eklendi`);
 }
 
 function deleteSite(sid) {
-  const s = state.sites.find(x => x.id === sid);
-  if (!confirm(`"${s?.name}" şantiyesi silinsin mi? Çalışan atamaları da kaldırılacak.`)) return;
-  state.sites = state.sites.filter(x => x.id !== sid);
+  const s = state.sites.find(x=>x.id===sid);
+  if (!confirm(`"${s?.name}" silinsin mi? Çalışan atamaları kaldırılacak.`)) return;
+  state.sites = state.sites.filter(x=>x.id!==sid);
   delete state.assignments[sid];
-  save();
-  renderAll();
-}
-
-function removeFromSite(wid, sid) {
-  unassign(wid);
-  renderAll();
+  save(); renderAll();
 }
 
 function filterWorkers() {
@@ -791,26 +675,18 @@ function filterWorkers() {
   renderWorkers();
 }
 
-// ─── Keyboard ────────────────────────────────────────────────────────────────
-document.getElementById('new-worker-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') addWorker();
-});
+document.getElementById('new-worker-input').addEventListener('keydown', e => { if(e.key==='Enter') addWorker(); });
+document.getElementById('new-site-input').addEventListener('keydown',  e => { if(e.key==='Enter') addSite(); });
 
-document.getElementById('new-site-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') addSite();
-});
-
-// ─── Notification ─────────────────────────────────────────────────────────────
 let notifTimer;
 function notify(msg) {
   const el = document.getElementById('notif');
   el.textContent = '✓ ' + msg;
   el.classList.add('show');
   clearTimeout(notifTimer);
-  notifTimer = setTimeout(() => el.classList.remove('show'), 2200);
+  notifTimer = setTimeout(()=>el.classList.remove('show'), 2200);
 }
 
-// ─── Init ────────────────────────────────────────────────────────────────────
 load();
 renderAll();
 </script>
